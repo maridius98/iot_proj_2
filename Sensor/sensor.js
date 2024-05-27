@@ -27,7 +27,7 @@ client.on('connect', function () {
             timestamp: timestamp,
           };
 
-          client.publish('your/topic', JSON.stringify(powerConsumption));
+          client.publish('sensor/topic', JSON.stringify(powerConsumption));
           console.log(`Row ${index} sent successfully`);
         }, index * 100);
       });

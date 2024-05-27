@@ -1,0 +1,33 @@
+version: '3'
+services:
+  mosquitto:
+    image: eclipse-mosquitto:latest
+    ports:
+      - 1883:1883
+    networks:
+      - mqtt-network
+
+  node-service:
+    build: ./Sensor
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
+
+  python-service:
+    build: ./Analytics
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
+
+  nestjs-service:
+    build: ./event-info
+    depends_on:
+      - mosquitto
+    networks:
+      - mqtt-network
+
+networks:
+  mqtt-network:
+    driver: bridge
