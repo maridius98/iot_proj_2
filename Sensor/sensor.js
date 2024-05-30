@@ -4,7 +4,7 @@ const mqtt = require('mqtt');
 
 const results = [];
 
-const client  = mqtt.connect('mqtt://broker.hivemq.com')
+const client  = mqtt.connect('mqtt://mosquitto')
 
 client.on('connect', function () {
   console.log('connected to MQTT broker');
